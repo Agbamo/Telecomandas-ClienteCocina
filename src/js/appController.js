@@ -29,14 +29,14 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojrouter', 'ojs/ojknockout', 'ojs/ojarray
 
       // Navigation setup
       var navData = [
-      {name: 'pendientes', id: 'pendientes',
+      {name: 'Inicio', id: 'pendientes',
        iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-fire-icon-24'},
-      {name: 'Incidents', id: 'incidents',
-       iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-fire-icon-24'},
-      {name: 'Customers', id: 'customers',
+     /* {name: 'Incidents', id: 'incidents',
+       iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-fire-icon-24'},*/
+      {name: 'platos', id: 'customers',
        iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-people-icon-24'},
-      {name: 'About', id: 'about',
-       iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-info-icon-24'}
+      /*{name: 'About', id: 'about',
+       iconClass: 'oj-navigationlist-item-icon demo-icon-font-24 demo-info-icon-24'}*/
       ];
       self.navDataSource = new oj.ArrayTableDataSource(navData, {idAttribute: 'id'});
 
@@ -57,9 +57,9 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojrouter', 'ojs/ojknockout', 'ojs/ojarray
 
       // Header
       // Application Name used in Branding Area
-      self.appName = ko.observable("App Name");
+      self.appName = ko.observable("");
       // User Info used in Global Navigation area
-      self.userLogin = ko.observable("john.hancock@oracle.com");
+      self.userLogin = ko.observable("");
 
       // Footer
       function footerLink(name, id, linkTarget) {
