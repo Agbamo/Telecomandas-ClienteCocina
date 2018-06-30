@@ -79,3 +79,9 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojrouter', 'ojs/ojknockout', 'ojs/ojarray
      return new ControllerViewModel();
   }
 );
+
+var val;
+
+function escribirValor(data){
+val=data;
+}

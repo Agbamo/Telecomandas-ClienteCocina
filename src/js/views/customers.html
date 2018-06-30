@@ -2,9 +2,20 @@
  Copyright (c) 2014, 2018, Oracle and/or its affiliates.
  The Universal Permissive License (UPL), Version 1.0
  -->
-<div class="oj-hybrid-padding">
-  <h1>Customers Content Area</h1>
-  <div>
-      To change the content of this section, you will make edits to the customers.html file located in the /js/views folder.
-  </div>
+ <div class="oj-hybrid-padding">
+  <h1>Users Content Area</h1>
+  <oj-list-view id="listview" aria-label="list using array" data="[[ArrayDataProvider]]" item.renderer="[[oj.KnockoutTemplateUtils.getRenderer('server_template', true)]]">
+  </oj-list-view>
+  
+  <label for="curr-selection">El usuario seleccionado es:&nbsp; </label>
+  <span data-bind="text: currentItem"></span>
+
+  <script type="text/html" id="server_template">
+    <li data-bind="attr: {id: $data['id']}, click: $parent.mostrarNombre">
+      <div class="oj-lg-4 oj-md-4 oj-sm-12">       
+          <strong data-bind="text: $data.nombre"></strong>
+                
+    </li>
+  </script>
+
 </div>

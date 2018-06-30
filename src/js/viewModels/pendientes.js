@@ -1,16 +1,37 @@
+
 /**
  * Copyright (c) 2014, 2018, Oracle and/or its affiliates.
  * The Universal Permissive License (UPL), Version 1.0
  */
 /*
- * Your dashboard ViewModel code goes here
+ * Your about ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery','websocket','ojs/ojinputtext'],
- function(oj, ko, $,websocket) {
+
+define(['ojs/ojcore', 'knockout', 'jquery','appController'],
+ function(oj, ko, $,appData) {
   
-    function DashboardViewModel() {
+    function AboutViewModel() {
       var self = this;
-      // Below are a subset of the ViewModel methods invoked by the ojModule binding
+      var wsUri = getWSUri();
+      var websocket = new WebSocket(wsUri);
+
+      websocket.onerror = function(evt) {
+        onError(evt)
+    };
+    websocket.onopen = function(evt) {
+       
+        onOpen(evt)
+    };
+     
+      websocket.onmessage = function(evt) {
+       
+      escribirValor(evt.data);
+
+       
+      };
+
+
+          // Below are a subset of the ViewModel methods invoked by the ojModule binding
       // Please reference the ojModule jsDoc for additional available methods.
 
       /**
@@ -65,6 +86,32 @@ define(['ojs/ojcore', 'knockout', 'jquery','websocket','ojs/ojinputtext'],
       self.handleDetached = function(info) {
         // Implement if needed
       };
+
+
+
+function escribir(texto){
+        
+    //document.write(texto);
+   }
+  
+   
+   function onError(evt) {
+       console.log('<span style="color: red;">ERROR:</span> ' + evt.data)
+   }
+   
+  
+   function onOpen() {
+
+    console.log("Connected to " + wsUri)
+}
+
+      function sendText(json) {
+       console.log("sending text: " + json);
+       websocket.send(json);
+   }
+   function getWSUri() {
+    return "ws://localhost:8080/Comandas/ServidorWS";
+}
     }
 
     /*
@@ -72,6 +119,8 @@ define(['ojs/ojcore', 'knockout', 'jquery','websocket','ojs/ojinputtext'],
      * each time the view is displayed.  Return an instance of the ViewModel if
      * only one instance of the ViewModel is needed.
      */
-    return new DashboardViewModel();
+    return new AboutViewModel();
   }
 );
+
+
